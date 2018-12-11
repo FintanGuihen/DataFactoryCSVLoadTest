@@ -1,0 +1,28 @@
+{
+	"name": "SSISintegrationRuntime",
+	"properties": {
+		"type": "Managed",
+		"description": "1st test of ssis in azure",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "North Europe",
+				"nodeSize": "Standard_D2_v3",
+				"numberOfNodes": 1,
+				"maxParallelExecutionsPerNode": 2
+			},
+			"ssisProperties": {
+				"catalogInfo": {
+					"catalogServerEndpoint": "logicappsdbserver.database.windows.net",
+					"catalogAdminUserName": "fintanguihen",
+					"catalogAdminPassword": {
+						"type": "SecureString",
+						"value": "**********"
+					},
+					"catalogPricingTier": "Basic"
+				},
+				"edition": "Standard",
+				"licenseType": "LicenseIncluded"
+			}
+		}
+	}
+}

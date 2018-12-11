@@ -1,0 +1,94 @@
+{
+	"name": "SourceDataset_ma4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "largeCSV",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "VendorID",
+				"type": "String"
+			},
+			{
+				"name": "tpep_pickup_datetime",
+				"type": "String"
+			},
+			{
+				"name": "tpep_dropoff_datetime",
+				"type": "String"
+			},
+			{
+				"name": "passenger_count",
+				"type": "String"
+			},
+			{
+				"name": "trip_distance",
+				"type": "String"
+			},
+			{
+				"name": "RatecodeID",
+				"type": "String"
+			},
+			{
+				"name": "store_and_fwd_flag",
+				"type": "String"
+			},
+			{
+				"name": "PULocationID",
+				"type": "String"
+			},
+			{
+				"name": "DOLocationID",
+				"type": "String"
+			},
+			{
+				"name": "payment_type",
+				"type": "String"
+			},
+			{
+				"name": "fare_amount",
+				"type": "String"
+			},
+			{
+				"name": "extra",
+				"type": "String"
+			},
+			{
+				"name": "mta_tax",
+				"type": "String"
+			},
+			{
+				"name": "tip_amount",
+				"type": "String"
+			},
+			{
+				"name": "tolls_amount",
+				"type": "String"
+			},
+			{
+				"name": "improvement_surcharge",
+				"type": "String"
+			},
+			{
+				"name": "total_amount",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "",
+			"folderPath": "nytaxi"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

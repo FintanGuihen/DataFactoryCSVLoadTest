@@ -1,0 +1,77 @@
+{
+	"name": "CopyPipeline_xz5",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_xz5",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "nytaxi/"
+					},
+					{
+						"name": "Destination",
+						"value": "nyTaxiJan"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "BlobSource",
+						"recursive": false
+					},
+					"sink": {
+						"type": "AzureTableSink",
+						"azureTableInsertType": "merge",
+						"writeBatchSize": 10000,
+						"insertType": "replace"
+					},
+					"enableStaging": false,
+					"dataIntegrationUnits": 0,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"VendorID": "VendorID",
+							"tpep_pickup_datetime": "tpep_pickup_datetime",
+							"tpep_dropoff_datetime": "tpep_dropoff_datetime",
+							"passenger_count": "passenger_count",
+							"trip_distance": "trip_distance",
+							"RatecodeID": "RatecodeID",
+							"store_and_fwd_flag": "store_and_fwd_flag",
+							"PULocationID": "PULocationID",
+							"DOLocationID": "DOLocationID",
+							"payment_type": "payment_type",
+							"fare_amount": "fare_amount",
+							"extra": "extra",
+							"mta_tax": "mta_tax",
+							"tip_amount": "tip_amount",
+							"tolls_amount": "tolls_amount",
+							"improvement_surcharge": "improvement_surcharge",
+							"total_amount": "total_amount"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_xz5",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_xz5",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
