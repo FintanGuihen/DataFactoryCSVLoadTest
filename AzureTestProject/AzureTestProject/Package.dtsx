@@ -1,0 +1,963 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/6/2018 12:16:58 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IT-LT-76"
+  DTS:CreatorName="RCSI\fintanguihen"
+  DTS:DTSID="{86C0ABCE-64DA-46B6-8F41-7F55CD662487}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="6153"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{C5C867F6-DA51-469A-8D61-9A2612F37045}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[datafactorytestacct]"
+      DTS:CreationName="AzureStorage"
+      DTS:DTSID="{2F7E87A8-B19A-4AC6-8935-5D5A0E28B0C2}"
+      DTS:ObjectName="datafactorytestacct">
+      <DTS:ObjectData>
+        <AzureStorageConnectionManager
+          ConnectionString="DefaultEndpointsProtocol=https;AccountName=datafactorytestacct;EndpointSuffix=core.windows.net">
+          <AccountKey
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGAyFLUJxo0qcjJJnOUULWQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABHWVQTzyVGkLUftjVdbuozAAAAAASAAACgAAAAEAAAAC3OkKMoPbtSy8HMtuRb5H64AAAAOVHEi11uqCxYK0hyhUglLNsrAfR9UTUAqZXvTWpkbRGDHAPcqqCC0RPg5sM5I5LCYcwFbKWKCUgfAKB0yQMZla4aEsNZlckhwyFgo6Z/1cLmOTfZYP0rQD3aDUSzXMRDdYmTzKdKImpS2f+TltIEZXZOeIr9jGBXMxFsbp8rk/keHMr8XCLhuzG5UTKKuVD+3VHvMui0lBx5ciceXCLZhmcUSrzTvQ929KS0dHJ9csp611qWR6+V/hQAAACY9lVSBd+B+nbOpQS6M/UrmvHB6A</AccountKey>
+        </AzureStorageConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[logicappsdbserver.database.windows.net.LogicAppsDb.fintanguihen]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{88F753D8-BF60-438B-BA6F-877F71DF63B4}"
+      DTS:ObjectName="logicappsdbserver.database.windows.net.LogicAppsDb.fintanguihen">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=logicappsdbserver.database.windows.net;User ID=fintanguihen;Initial Catalog=LogicAppsDb;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGAyFLUJxo0qcjJJnOUULWQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAD1Ha10HIT9bapanIkcB+JNAAAAAASAAACgAAAAEAAAAMhZGp82fSGBYwt+oHR2liowAAAAOPD1aVNrfsPGpWa3Y4BsHQ6cYjJq2wFc2Ot/OO9skczHmmcHZK1L69edZx/B3TguFAAAALsxXFqi82x+MlGqH4knsmeNuEbf</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT Stage nyTaxiData"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9AA754E0-E2D5-45FB-8CCD-CB6907314304}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT Stage nyTaxiData"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST nyTaxiStaging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[nyTaxiStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[logicappsdbserver.database.windows.net.LogicAppsDb.fintanguihen]"
+                  connectionManagerRefId="Package.ConnectionManagers[logicappsdbserver.database.windows.net.LogicAppsDb.fintanguihen]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[VendorID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="VendorID"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[VendorID]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[VendorID]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[tpep_pickup_datetime]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="tpep_pickup_datetime"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[tpep_pickup_datetime]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tpep_pickup_datetime]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[tpep_dropoff_datetime]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="tpep_dropoff_datetime"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[tpep_dropoff_datetime]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tpep_dropoff_datetime]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[passenger_count]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="passenger_count"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[passenger_count]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[passenger_count]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[trip_distance]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="trip_distance"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[trip_distance]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[trip_distance]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[RatecodeID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RatecodeID"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[RatecodeID]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[RatecodeID]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[store_and_fwd_flag]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="store_and_fwd_flag"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[store_and_fwd_flag]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[store_and_fwd_flag]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[PULocationID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PULocationID"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[PULocationID]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[PULocationID]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[DOLocationID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DOLocationID"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[DOLocationID]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[DOLocationID]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[payment_type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="payment_type"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[payment_type]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[payment_type]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[fare_amount]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="fare_amount"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[fare_amount]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[fare_amount]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[extra]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="extra"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[extra]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[extra]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[mta_tax]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="mta_tax"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[mta_tax]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[mta_tax]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[tip_amount]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="tip_amount"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[tip_amount]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tip_amount]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[tolls_amount]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="tolls_amount"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[tolls_amount]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tolls_amount]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[improvement_surcharge]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="improvement_surcharge"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[improvement_surcharge]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[improvement_surcharge]" />
+                    <inputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].Columns[total_amount]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="total_amount"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[total_amount]"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[total_amount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[VendorID]"
+                      dataType="wstr"
+                      length="255"
+                      name="VendorID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[tpep_pickup_datetime]"
+                      dataType="wstr"
+                      length="255"
+                      name="tpep_pickup_datetime" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[tpep_dropoff_datetime]"
+                      dataType="wstr"
+                      length="255"
+                      name="tpep_dropoff_datetime" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[passenger_count]"
+                      dataType="wstr"
+                      length="255"
+                      name="passenger_count" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[trip_distance]"
+                      dataType="wstr"
+                      length="255"
+                      name="trip_distance" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[RatecodeID]"
+                      dataType="wstr"
+                      length="255"
+                      name="RatecodeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[store_and_fwd_flag]"
+                      dataType="wstr"
+                      length="255"
+                      name="store_and_fwd_flag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[PULocationID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PULocationID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[DOLocationID]"
+                      dataType="wstr"
+                      length="255"
+                      name="DOLocationID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[payment_type]"
+                      dataType="wstr"
+                      length="255"
+                      name="payment_type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[fare_amount]"
+                      dataType="wstr"
+                      length="255"
+                      name="fare_amount" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[extra]"
+                      dataType="wstr"
+                      length="255"
+                      name="extra" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[mta_tax]"
+                      dataType="wstr"
+                      length="255"
+                      name="mta_tax" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[tip_amount]"
+                      dataType="wstr"
+                      length="255"
+                      name="tip_amount" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[tolls_amount]"
+                      dataType="wstr"
+                      length="255"
+                      name="tolls_amount" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[improvement_surcharge]"
+                      dataType="wstr"
+                      length="255"
+                      name="improvement_surcharge" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input].ExternalColumns[total_amount]"
+                      dataType="wstr"
+                      length="255"
+                      name="total_amount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Stage nyTaxiData\SRC nyTaxi"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="© Microsoft Corporation; All Rights Reserved;"
+              description="Extracts data from a blob in Azure Storage. The supported file formats are: Text and Avro."
+              name="SRC nyTaxi"
+              usesDispositions="true"
+              validateExternalMetadata="False">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of blob container"
+                  expressionType="Notify"
+                  name="Blob Container">nytaxi</property>
+                <property
+                  dataType="System.String"
+                  description="The full name of blob"
+                  expressionType="Notify"
+                  name="Blob Name">yellow_tripdata_2018-01.csv</property>
+                <property
+                  dataType="System.Int32"
+                  description="The format of blob file"
+                  name="Blob Format"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzBlobFormatEnumStringConverter">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Compress File"
+                  name="Compress File">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The compression type"
+                  name="Compression Type"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzCompressionTypeEnumStringConverter">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The compression level"
+                  name="Compression Level"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzCompressionLevelEnumStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  description="The character used to delimit columns in text file"
+                  name="Column Delimiter">,</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Column names in the first data row"
+                  name="First Row as Column Names">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">AzBlobSrc</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Connections[Azure Storage]"
+                  connectionManagerID="Package.ConnectionManagers[datafactorytestacct]"
+                  connectionManagerRefId="Package.ConnectionManagers[datafactorytestacct]"
+                  description="Connection Manager for Azure Storage"
+                  name="Azure Storage" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output]"
+                  name="Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[VendorID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[VendorID]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[VendorID]"
+                      name="VendorID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tpep_pickup_datetime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[tpep_pickup_datetime]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tpep_pickup_datetime]"
+                      name="tpep_pickup_datetime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tpep_dropoff_datetime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[tpep_dropoff_datetime]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tpep_dropoff_datetime]"
+                      name="tpep_dropoff_datetime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[passenger_count]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[passenger_count]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[passenger_count]"
+                      name="passenger_count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[trip_distance]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[trip_distance]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[trip_distance]"
+                      name="trip_distance"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[RatecodeID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[RatecodeID]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[RatecodeID]"
+                      name="RatecodeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[store_and_fwd_flag]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[store_and_fwd_flag]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[store_and_fwd_flag]"
+                      name="store_and_fwd_flag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[PULocationID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[PULocationID]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[PULocationID]"
+                      name="PULocationID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[DOLocationID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[DOLocationID]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[DOLocationID]"
+                      name="DOLocationID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[payment_type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[payment_type]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[payment_type]"
+                      name="payment_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[fare_amount]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[fare_amount]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[fare_amount]"
+                      name="fare_amount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[extra]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[extra]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[extra]"
+                      name="extra"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[mta_tax]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[mta_tax]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[mta_tax]"
+                      name="mta_tax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tip_amount]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[tip_amount]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tip_amount]"
+                      name="tip_amount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tolls_amount]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[tolls_amount]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[tolls_amount]"
+                      name="tolls_amount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[improvement_surcharge]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[improvement_surcharge]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[improvement_surcharge]"
+                      name="improvement_surcharge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[total_amount]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[total_amount]"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].Columns[total_amount]"
+                      name="total_amount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[VendorID]"
+                      dataType="wstr"
+                      length="255"
+                      name="VendorID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[tpep_pickup_datetime]"
+                      dataType="wstr"
+                      length="255"
+                      name="tpep_pickup_datetime" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[tpep_dropoff_datetime]"
+                      dataType="wstr"
+                      length="255"
+                      name="tpep_dropoff_datetime" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[passenger_count]"
+                      dataType="wstr"
+                      length="255"
+                      name="passenger_count" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[trip_distance]"
+                      dataType="wstr"
+                      length="255"
+                      name="trip_distance" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[RatecodeID]"
+                      dataType="wstr"
+                      length="255"
+                      name="RatecodeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[store_and_fwd_flag]"
+                      dataType="wstr"
+                      length="255"
+                      name="store_and_fwd_flag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[PULocationID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PULocationID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[DOLocationID]"
+                      dataType="wstr"
+                      length="255"
+                      name="DOLocationID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[payment_type]"
+                      dataType="wstr"
+                      length="255"
+                      name="payment_type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[fare_amount]"
+                      dataType="wstr"
+                      length="255"
+                      name="fare_amount" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[extra]"
+                      dataType="wstr"
+                      length="255"
+                      name="extra" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[mta_tax]"
+                      dataType="wstr"
+                      length="255"
+                      name="mta_tax" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[tip_amount]"
+                      dataType="wstr"
+                      length="255"
+                      name="tip_amount" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[tolls_amount]"
+                      dataType="wstr"
+                      length="255"
+                      name="tolls_amount" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[improvement_surcharge]"
+                      dataType="wstr"
+                      length="255"
+                      name="improvement_surcharge" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output].ExternalColumns[total_amount]"
+                      dataType="wstr"
+                      length="255"
+                      name="total_amount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output]"
+                  isErrorOut="true"
+                  name="Error output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[VendorID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[VendorID]"
+                      name="VendorID" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[tpep_pickup_datetime]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[tpep_pickup_datetime]"
+                      name="tpep_pickup_datetime" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[tpep_dropoff_datetime]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[tpep_dropoff_datetime]"
+                      name="tpep_dropoff_datetime" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[passenger_count]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[passenger_count]"
+                      name="passenger_count" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[trip_distance]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[trip_distance]"
+                      name="trip_distance" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[RatecodeID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[RatecodeID]"
+                      name="RatecodeID" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[store_and_fwd_flag]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[store_and_fwd_flag]"
+                      name="store_and_fwd_flag" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[PULocationID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[PULocationID]"
+                      name="PULocationID" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[DOLocationID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[DOLocationID]"
+                      name="DOLocationID" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[payment_type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[payment_type]"
+                      name="payment_type" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[fare_amount]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[fare_amount]"
+                      name="fare_amount" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[extra]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[extra]"
+                      name="extra" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[mta_tax]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[mta_tax]"
+                      name="mta_tax" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[tip_amount]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[tip_amount]"
+                      name="tip_amount" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[tolls_amount]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[tolls_amount]"
+                      name="tolls_amount" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[improvement_surcharge]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[improvement_surcharge]"
+                      name="improvement_surcharge" />
+                    <outputColumn
+                      refId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[total_amount]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Error output].Columns[total_amount]"
+                      name="total_amount" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT Stage nyTaxiData.Paths[Output]"
+              endId="Package\DFT Stage nyTaxiData\DST nyTaxiStaging.Inputs[OLE DB Destination Input]"
+              name="Output"
+              startId="Package\DFT Stage nyTaxiData\SRC nyTaxi.Outputs[Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL truncateStaging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9FC9FFB0-0B89-4900-90AA-8799AFEC9E06}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL truncateStaging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{88F753D8-BF60-438B-BA6F-877F71DF63B4}"
+          SQLTask:SqlStatementSource="truncate table nyTaxiStaging" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{460AA85E-CEAF-458C-B2E1-67FDEFFBFE36}"
+      DTS:From="Package\SQL truncateStaging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT Stage nyTaxiData" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="184,42"
+          Id="Package\DFT Stage nyTaxiData"
+          TopLeft="226,141" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\SQL truncateStaging"
+          TopLeft="233,52" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="319.25,94">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT Stage nyTaxiData">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="132,42"
+          Id="Package\DFT Stage nyTaxiData\SRC nyTaxi"
+          TopLeft="443,137" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\DFT Stage nyTaxiData\DST nyTaxiStaging"
+          TopLeft="418,250" />
+        <EdgeLayout
+          Id="Package\DFT Stage nyTaxiData.Paths[Output]"
+          TopLeft="505.5,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Stage nyTaxiData\SRC nyTaxi">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Stage nyTaxiData\DST nyTaxiStaging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

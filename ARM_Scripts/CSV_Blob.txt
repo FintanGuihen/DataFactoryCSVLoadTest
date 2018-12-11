@@ -1,0 +1,11 @@
+{
+    "name": "largeCSV",
+    "type": "Microsoft.DataFactory/factories/linkedservices",
+    "properties": {
+        "type": "AzureBlobStorage",
+        "typeProperties": {
+            "connectionString": "DefaultEndpointsProtocol=https;AccountName=datafactorytestacct;EndpointSuffix=core.windows.net;",
+            "encryptedCredential": ""
+        }
+    }
+}
